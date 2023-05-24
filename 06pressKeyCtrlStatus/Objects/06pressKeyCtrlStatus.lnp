@@ -1,0 +1,3 @@
+".\Objects\0601pressKeyCtrlStatus.obj" 
+TO ".\Objects\06pressKeyCtrlStatus" 
+PRINT(".\Listings\06pressKeyCtrlStatus.m51") RAMSIZE(256) 

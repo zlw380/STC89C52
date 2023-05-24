@@ -1,0 +1,101 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        10/20/2022  23:03:02  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+F:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\0601pressKeyCtrlStatus.obj TO .\Objects\06pressKeyCtrlStatus PRINT (.\Listings\06p
+>> ressKeyCtrlStatus.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\0601pressKeyCtrlStatus.obj (0601PRESSKEYCTRLSTATUS)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\06pressKeyCtrlStatus (0601PRESSKEYCTRLSTATUS)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     001CH     UNIT         ?PR?MAIN?0601PRESSKEYCTRLSTATUS
+            CODE    001FH     0015H     UNIT         ?PR?_SETTIMEOUT?0601PRESSKEYCTRLSTATUS
+            CODE    0034H     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\06pressKeyCtrlStatus (0601PRESSKEYCTRLSTATUS)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?0601PRESSKEYCTRLSTATUS
+
+?PR?MAIN?0601PRESSKEYCTRLSTATUS
+  +--> ?PR?_SETTIMEOUT?0601PRESSKEYCTRLSTATUS
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\06pressKeyCtrlStatus (0601PRESSKEYCTRLSTATUS)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        0601PRESSKEYCTRLSTATUS
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:00A0H.0       PUBLIC        P2_0
+  B:00A0H.1       PUBLIC        P2_1
+  B:00B0H.1       PUBLIC        P3_1
+  B:00A0H.2       PUBLIC        P2_2
+  C:0003H         PUBLIC        main
+  C:001FH         PUBLIC        _setTimeout
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/20/2022  23:03:02  PAGE 2
+
+
+  -------         PROC          _SETTIMEOUT
+  D:0006H         SYMBOL        delayTime
+  -------         DO            
+  D:0005H         SYMBOL        i
+  D:0004H         SYMBOL        j
+  -------         ENDDO         
+  C:001FH         LINE#         4
+  C:001FH         LINE#         5
+  C:001FH         LINE#         8
+  C:0023H         LINE#         9
+  C:0024H         LINE#         10
+  C:0026H         LINE#         11
+  C:0028H         LINE#         13
+  C:0028H         LINE#         14
+  C:002AH         LINE#         15
+  C:002CH         LINE#         16
+  C:0031H         LINE#         17
+  C:0033H         LINE#         19
+  -------         ENDPROC       _SETTIMEOUT
+  -------         PROC          MAIN
+  C:0003H         LINE#         22
+  C:0003H         LINE#         24
+  C:0003H         LINE#         26
+  C:0006H         LINE#         27
+  C:000DH         LINE#         29
+  C:0010H         LINE#         30
+  C:0010H         LINE#         31
+  C:0017H         LINE#         34
+  C:0019H         LINE#         35
+  C:001BH         LINE#         36
+  C:001DH         LINE#         37
+  C:001DH         LINE#         38
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        0601PRESSKEYCTRLSTATUS
+
+Program Size: data=9.0 xdata=0 code=64
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

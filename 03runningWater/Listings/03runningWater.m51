@@ -1,0 +1,114 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        10/19/2022  12:05:03  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+F:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\0301runningWater.obj TO .\Objects\03runningWater PRINT (.\Listings\03runningWater.
+>> m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\0301runningWater.obj (0301RUNNINGWATER)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\03runningWater (0301RUNNINGWATER)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0032H     UNIT         ?PR?RUNNINGWATER?0301RUNNINGWATER
+            CODE    0035H     000EH     UNIT         ?PR?DELAY500MS?0301RUNNINGWATER
+            CODE    0043H     000CH     UNIT         ?C_C51STARTUP
+            CODE    004FH     0003H     UNIT         ?PR?MAIN?0301RUNNINGWATER
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\03runningWater (0301RUNNINGWATER)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?0301RUNNINGWATER
+
+?PR?MAIN?0301RUNNINGWATER
+  +--> ?PR?RUNNINGWATER?0301RUNNINGWATER
+
+?PR?RUNNINGWATER?0301RUNNINGWATER
+  +--> ?PR?DELAY500MS?0301RUNNINGWATER
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\03runningWater (0301RUNNINGWATER)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        0301RUNNINGWATER
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  C:0003H         PUBLIC        runningWater
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/19/2022  12:05:03  PAGE 2
+
+
+  C:004FH         PUBLIC        main
+  C:0035H         PUBLIC        Delay500ms
+  -------         PROC          MAIN
+  C:004FH         LINE#         7
+  C:004FH         LINE#         8
+  -------         ENDPROC       MAIN
+  -------         PROC          RUNNINGWATER
+  C:0003H         LINE#         11
+  C:0003H         LINE#         12
+  C:0003H         LINE#         13
+  C:0006H         LINE#         14
+  C:0009H         LINE#         15
+  C:000CH         LINE#         16
+  C:000FH         LINE#         17
+  C:0012H         LINE#         18
+  C:0015H         LINE#         19
+  C:0018H         LINE#         20
+  C:001BH         LINE#         21
+  C:001EH         LINE#         22
+  C:0021H         LINE#         23
+  C:0024H         LINE#         24
+  C:0027H         LINE#         25
+  C:002AH         LINE#         26
+  C:002DH         LINE#         27
+  C:0030H         LINE#         28
+  C:0033H         LINE#         29
+  -------         ENDPROC       RUNNINGWATER
+  -------         PROC          DELAY500MS
+  -------         DO            
+  D:0007H         SYMBOL        i
+  D:0006H         SYMBOL        j
+  D:0005H         SYMBOL        k
+  -------         ENDDO         
+  C:0035H         LINE#         33
+  C:0035H         LINE#         34
+  C:0035H         LINE#         37
+  C:0036H         LINE#         38
+  C:0038H         LINE#         39
+  C:003AH         LINE#         40
+  C:003CH         LINE#         42
+  C:003CH         LINE#         44
+  C:003CH         LINE#         45
+  C:003EH         LINE#         46
+  C:0040H         LINE#         47
+  C:0042H         LINE#         48
+  -------         ENDPROC       DELAY500MS
+  -------         ENDMOD        0301RUNNINGWATER
+
+Program Size: data=9.0 xdata=0 code=82
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

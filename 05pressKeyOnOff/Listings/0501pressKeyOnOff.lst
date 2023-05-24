@@ -1,0 +1,53 @@
+C51 COMPILER V9.54   0501PRESSKEYONOFF                                                     10/19/2022 22:36:18 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE 0501PRESSKEYONOFF
+OBJECT MODULE PLACED IN .\Objects\0501pressKeyOnOff.obj
+COMPILER INVOKED BY: F:\Keil_v5\C51\BIN\C51.EXE 0501pressKeyOnOff.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\
+                    -Listings\0501pressKeyOnOff.lst) OBJECT(.\Objects\0501pressKeyOnOff.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          
+   3          void main(){
+   4   1              
+   5   1      //      P2 = 0xFE;
+   6   1      
+   7   1              while(1){
+   8   2                      if(P3_1 == 0){
+   9   3                              P2_0 = 0;
+  10   3                      }else{
+  11   3                              P2_0 = 1;
+  12   3                      }
+  13   2                      if(P3_0 == 0){
+  14   3                              P2_1 = 0;
+  15   3                      }else{
+  16   3                              P2_1 = 1;
+  17   3                      }
+  18   2                      if(P3_2 == 0){
+  19   3                              P2_2 = 0;
+  20   3                      }else{
+  21   3                              P2_2 = 1;
+  22   3                      }
+  23   2                      if(P3_3 == 0){
+  24   3                              P2_3 = 0;
+  25   3                      }else{
+  26   3                              P2_3 = 1;
+  27   3                      }
+  28   2              }
+  29   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     38    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

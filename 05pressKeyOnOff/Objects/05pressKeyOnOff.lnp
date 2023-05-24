@@ -1,0 +1,3 @@
+".\Objects\0501pressKeyOnOff.obj" 
+TO ".\Objects\05pressKeyOnOff" 
+PRINT(".\Listings\05pressKeyOnOff.m51") RAMSIZE(256) 

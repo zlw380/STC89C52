@@ -1,0 +1,92 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        10/19/2022  22:36:19  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+F:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\0501pressKeyOnOff.obj TO .\Objects\05pressKeyOnOff PRINT (.\Listings\05pressKeyOnO
+>> ff.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\0501pressKeyOnOff.obj (0501PRESSKEYONOFF)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\05pressKeyOnOff (0501PRESSKEYONOFF)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0026H     UNIT         ?PR?MAIN?0501PRESSKEYONOFF
+            CODE    0029H     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\05pressKeyOnOff (0501PRESSKEYONOFF)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?0501PRESSKEYONOFF
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\05pressKeyOnOff (0501PRESSKEYONOFF)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        0501PRESSKEYONOFF
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:00A0H.0       PUBLIC        P2_0
+  B:00B0H.0       PUBLIC        P3_0
+  B:00A0H.1       PUBLIC        P2_1
+  B:00B0H.1       PUBLIC        P3_1
+  B:00A0H.2       PUBLIC        P2_2
+  B:00B0H.2       PUBLIC        P3_2
+  B:00A0H.3       PUBLIC        P2_3
+  B:00B0H.3       PUBLIC        P3_3
+  C:0003H         PUBLIC        main
+  -------         PROC          MAIN
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/19/2022  22:36:19  PAGE 2
+
+
+  C:0003H         LINE#         3
+  C:0003H         LINE#         7
+  C:0003H         LINE#         8
+  C:0006H         LINE#         9
+  C:0008H         LINE#         10
+  C:000AH         LINE#         11
+  C:000CH         LINE#         12
+  C:000CH         LINE#         13
+  C:000FH         LINE#         14
+  C:0011H         LINE#         15
+  C:0013H         LINE#         16
+  C:0015H         LINE#         17
+  C:0015H         LINE#         18
+  C:0018H         LINE#         19
+  C:001AH         LINE#         20
+  C:001CH         LINE#         21
+  C:001EH         LINE#         22
+  C:001EH         LINE#         23
+  C:0021H         LINE#         24
+  C:0023H         LINE#         25
+  C:0025H         LINE#         26
+  C:0027H         LINE#         27
+  C:0027H         LINE#         28
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        0501PRESSKEYONOFF
+
+Program Size: data=9.0 xdata=0 code=53
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

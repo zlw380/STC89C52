@@ -1,0 +1,8 @@
+".\Objects\main.obj",
+".\Objects\Delay.obj",
+".\Objects\Key.obj",
+".\Objects\LCD1602.obj",
+".\Objects\Timer0.obj",
+".\Objects\matrixKey.obj" 
+TO ".\Objects\17interruptClock" 
+PRINT(".\Listings\17interruptClock.m51") RAMSIZE(256) 

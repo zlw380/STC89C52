@@ -1,0 +1,7 @@
+".\Objects\main.obj",
+".\Objects\Timer0.obj",
+".\Objects\LCD1602.obj",
+".\Objects\Key.obj",
+".\Objects\Delay.obj" 
+TO ".\Objects\16interruptModule" 
+PRINT(".\Listings\16interruptModule.m51") RAMSIZE(256) 

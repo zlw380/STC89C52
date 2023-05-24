@@ -1,0 +1,125 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        10/21/2022  10:44:22  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+F:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\0801main.obj TO .\Objects\08pressKeyCtrlMoveBit PRINT (.\Listings\08pressKeyCtrlMo
+>> veBit.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\0801main.obj (0801MAIN)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\08pressKeyCtrlMoveBit (0801MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0001H     UNIT         ?DT?0801MAIN
+            IDATA   0009H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     008CH     UNIT         ?C_C51STARTUP
+            CODE    008FH     0049H     UNIT         ?PR?MAIN?0801MAIN
+            CODE    00D8H     001AH     UNIT         ?PR?_SETTIMEOUT?0801MAIN
+            CODE    00F2H     0004H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\08pressKeyCtrlMoveBit (0801MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?0801MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?0801MAIN
+  +--> ?PR?_SETTIMEOUT?0801MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\08pressKeyCtrlMoveBit (0801MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        0801MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  B:00B0H.0       PUBLIC        P3_0
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/21/2022  10:44:22  PAGE 2
+
+
+  B:00B0H.1       PUBLIC        P3_1
+  C:008FH         PUBLIC        main
+  C:00DCH         PUBLIC        _setTimeout
+  D:0008H         PUBLIC        LEDStatus
+  C:00D8H         SYMBOL        L?0024
+  -------         PROC          L?0023
+  -------         ENDPROC       L?0023
+  C:00D8H         SYMBOL        L?0024
+  -------         PROC          _SETTIMEOUT
+  D:0006H         SYMBOL        delayTime
+  -------         DO            
+  D:0005H         SYMBOL        i
+  D:0004H         SYMBOL        j
+  -------         ENDDO         
+  C:00DCH         LINE#         7
+  C:00DCH         LINE#         8
+  C:00DCH         LINE#         11
+  C:00E6H         LINE#         12
+  C:00E7H         LINE#         13
+  C:00E9H         LINE#         14
+  C:00EBH         LINE#         16
+  C:00EBH         LINE#         17
+  C:00EDH         LINE#         18
+  C:00EFH         LINE#         19
+  C:00F1H         LINE#         21
+  -------         ENDPROC       _SETTIMEOUT
+  -------         PROC          MAIN
+  C:008FH         LINE#         23
+  C:008FH         LINE#         25
+  C:0094H         LINE#         27
+  C:0094H         LINE#         28
+  C:0097H         LINE#         29
+  C:009AH         LINE#         30
+  C:009DH         LINE#         31
+  C:00A0H         LINE#         32
+  C:00A5H         LINE#         33
+  C:00A8H         LINE#         34
+  C:00AAH         LINE#         35
+  C:00B0H         LINE#         36
+  C:00B0H         LINE#         39
+  C:00B5H         LINE#         43
+  C:00B5H         LINE#         44
+  C:00B8H         LINE#         45
+  C:00BBH         LINE#         46
+  C:00BEH         LINE#         47
+  C:00C1H         LINE#         48
+  C:00C6H         LINE#         49
+  C:00C9H         LINE#         50
+  C:00CBH         LINE#         51
+  C:00D1H         LINE#         52
+  C:00D1H         LINE#         55
+  C:00D6H         LINE#         57
+  C:00D6H         LINE#         58
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        0801MAIN
+
+Program Size: data=10.0 xdata=0 code=246
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/21/2022  10:44:22  PAGE 3
+
+
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

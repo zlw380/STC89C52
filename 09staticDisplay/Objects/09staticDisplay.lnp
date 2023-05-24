@@ -1,0 +1,3 @@
+".\Objects\0901staticDisplay.obj" 
+TO ".\Objects\09staticDisplay" 
+PRINT(".\Listings\09staticDisplay.m51") RAMSIZE(256) 

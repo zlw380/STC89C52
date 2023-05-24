@@ -1,0 +1,3 @@
+".\Objects\0801main.obj" 
+TO ".\Objects\08pressKeyCtrlMoveBit" 
+PRINT(".\Listings\08pressKeyCtrlMoveBit.m51") RAMSIZE(256) 

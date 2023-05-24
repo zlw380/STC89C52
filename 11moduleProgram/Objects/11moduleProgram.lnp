@@ -1,0 +1,5 @@
+".\Objects\1101moduleProgram.obj",
+".\Objects\Delay.obj",
+".\Objects\lampCtrl.obj" 
+TO ".\Objects\11moduleProgram" 
+PRINT(".\Listings\11moduleProgram.m51") RAMSIZE(256) 

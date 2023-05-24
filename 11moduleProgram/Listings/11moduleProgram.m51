@@ -1,0 +1,224 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        10/24/2022  12:31:32  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+F:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\1101moduleProgram.obj, .\Objects\Delay.obj, .\Objects\lampCtrl.obj TO .\Objects\11
+>> moduleProgram PRINT (.\Listings\11moduleProgram.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\1101moduleProgram.obj (1101MODULEPROGRAM)
+  .\Objects\Delay.obj (DELAY)
+  .\Objects\lampCtrl.obj (LAMPCTRL)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (PRINTF)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDPTR)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDOPTR)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (?C?CSTPTR)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (?C?PLDIIDATA)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (?C?CCASE)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (PUTCHAR)
+
+
+LINK MAP OF MODULE:  .\Objects\11moduleProgram (1101MODULEPROGRAM)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0015H     UNIT         _DATA_GROUP_
+                    001DH     0003H                  *** GAP ***
+            BIT     0020H.0   0001H.1   UNIT         _BIT_GROUP_
+                    0021H.1   0000H.7                *** GAP ***
+            DATA    0022H     000AH     UNIT         ?DT?LAMPCTRL
+            IDATA   002CH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     035CH     UNIT         ?PR?PRINTF?PRINTF
+            CODE    035FH     008EH     UNIT         ?C?LIB_CODE
+            CODE    03EDH     008CH     UNIT         ?C_C51STARTUP
+            CODE    0479H     0066H     UNIT         ?PR?_STATICDISPLAY?LAMPCTRL
+            CODE    04DFH     003AH     UNIT         ?PR?MAIN?1101MODULEPROGRAM
+            CODE    0519H     0027H     UNIT         ?PR?PUTCHAR?PUTCHAR
+            CODE    0540H     0016H     UNIT         ?PR?_SETTIMEOUT?DELAY
+            CODE    0556H     000DH     UNIT         ?C_INITSEG
+            CODE    0563H     0008H     UNIT         ?CO?LAMPCTRL
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\11moduleProgram (1101MODULEPROGRAM)
+
+
+SEGMENT                                BIT_GROUP          DATA_GROUP 
+  +--> CALLED SEGMENT               START    LENGTH     START    LENGTH
+-----------------------------------------------------------------------
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/24/2022  12:31:32  PAGE 2
+
+
+?C_C51STARTUP                       -----    -----      -----    -----
+  +--> ?PR?MAIN?1101MODULEPROGRAM
+  +--> ?C_INITSEG
+
+?PR?MAIN?1101MODULEPROGRAM          -----    -----      -----    -----
+  +--> ?PR?_STATICDISPLAY?LAMPCTRL
+
+?PR?_STATICDISPLAY?LAMPCTRL         -----    -----      0008H    0001H
+  +--> ?CO?LAMPCTRL
+  +--> ?PR?PRINTF?PRINTF
+  +--> ?PR?_SETTIMEOUT?DELAY
+
+?PR?PRINTF?PRINTF                   0020H.0  0001H.1    0009H    0014H
+  +--> ?PR?PUTCHAR?PUTCHAR
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\11moduleProgram (1101MODULEPROGRAM)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        1101MODULEPROGRAM
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:04DFH         PUBLIC        main
+  -------         PROC          MAIN
+  C:04DFH         LINE#         4
+  C:04DFH         LINE#         6
+  C:04DFH         LINE#         8
+  C:04E6H         LINE#         9
+  C:04EDH         LINE#         10
+  C:04F4H         LINE#         11
+  C:04FBH         LINE#         12
+  C:0502H         LINE#         13
+  C:0509H         LINE#         14
+  C:0510H         LINE#         15
+  C:0517H         LINE#         16
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        1101MODULEPROGRAM
+
+  -------         MODULE        DELAY
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0540H         PUBLIC        _setTimeout
+  -------         PROC          _SETTIMEOUT
+  D:0006H         SYMBOL        delayTime
+  -------         DO            
+  D:0005H         SYMBOL        i
+  D:0004H         SYMBOL        j
+  -------         ENDDO         
+  C:0540H         LINE#         3
+  C:0540H         LINE#         4
+  C:0540H         LINE#         7
+  C:054AH         LINE#         8
+  C:054BH         LINE#         9
+  C:054DH         LINE#         10
+  C:054FH         LINE#         12
+  C:054FH         LINE#         13
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/24/2022  12:31:32  PAGE 3
+
+
+  C:0551H         LINE#         14
+  C:0553H         LINE#         15
+  C:0555H         LINE#         17
+  -------         ENDPROC       _SETTIMEOUT
+  -------         ENDMOD        DELAY
+
+  -------         MODULE        LAMPCTRL
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  B:00A0H.2       PUBLIC        P2_2
+  B:00A0H.3       PUBLIC        P2_3
+  B:00A0H.4       PUBLIC        P2_4
+  C:0479H         PUBLIC        _staticDisplay
+  D:0022H         PUBLIC        displayNumber
+  -------         PROC          _STATICDISPLAY
+  D:0007H         SYMBOL        location
+  D:0008H         SYMBOL        num
+  C:0479H         LINE#         7
+  C:047BH         LINE#         9
+  C:047EH         LINE#         10
+  C:0480H         LINE#         11
+  C:0480H         LINE#         12
+  C:0480H         LINE#         13
+  C:0485H         LINE#         14
+  C:0487H         LINE#         15
+  C:0487H         LINE#         16
+  C:0487H         LINE#         17
+  C:048CH         LINE#         18
+  C:048EH         LINE#         19
+  C:048EH         LINE#         20
+  C:048EH         LINE#         21
+  C:0493H         LINE#         22
+  C:0495H         LINE#         23
+  C:0495H         LINE#         24
+  C:0495H         LINE#         25
+  C:049AH         LINE#         26
+  C:049CH         LINE#         27
+  C:049EH         LINE#         28
+  C:04A0H         LINE#         29
+  C:04A5H         LINE#         30
+  C:04A7H         LINE#         31
+  C:04A9H         LINE#         32
+  C:04ABH         LINE#         33
+  C:04B0H         LINE#         34
+  C:04B2H         LINE#         35
+  C:04B4H         LINE#         36
+  C:04B6H         LINE#         37
+  C:04BBH         LINE#         38
+  C:04BDH         LINE#         39
+  C:04BFH         LINE#         40
+  C:04C1H         LINE#         41
+  C:04C3H         LINE#         42
+  C:04CCH         LINE#         43
+  C:04CCH         LINE#         45
+  C:04D4H         LINE#         47
+  C:04DBH         LINE#         48
+  C:04DEH         LINE#         49
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/24/2022  12:31:32  PAGE 4
+
+
+  -------         ENDPROC       _STATICDISPLAY
+  -------         ENDMOD        LAMPCTRL
+
+  -------         MODULE        PRINTF
+  D:0009H         PUBLIC        ?_PRINTF517?BYTE
+  D:0009H         PUBLIC        ?_PRINTF?BYTE
+  D:0009H         PUBLIC        ?_SPRINTF517?BYTE
+  D:0009H         PUBLIC        ?_SPRINTF?BYTE
+  C:0065H         PUBLIC        _PRINTF
+  C:0065H         PUBLIC        _PRINTF517
+  C:005FH         PUBLIC        _SPRINTF
+  C:005FH         PUBLIC        _SPRINTF517
+  -------         ENDMOD        PRINTF
+
+  -------         MODULE        ?C?CLDPTR
+  C:035FH         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+  -------         MODULE        ?C?CLDOPTR
+  C:0378H         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+  -------         MODULE        ?C?CSTPTR
+  C:03A5H         PUBLIC        ?C?CSTPTR
+  -------         ENDMOD        ?C?CSTPTR
+
+  -------         MODULE        ?C?PLDIIDATA
+  C:03B7H         PUBLIC        ?C?PLDIIDATA
+  -------         ENDMOD        ?C?PLDIIDATA
+
+  -------         MODULE        ?C?CCASE
+  C:03C7H         PUBLIC        ?C?CCASE
+  -------         ENDMOD        ?C?CCASE
+
+  -------         MODULE        PUTCHAR
+  C:0519H         PUBLIC        _PUTCHAR
+  -------         ENDMOD        PUTCHAR
+
+Program Size: data=41.1 xdata=0 code=1387
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

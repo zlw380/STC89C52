@@ -1,0 +1,214 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        10/22/2022  23:32:58  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+F:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\1001dynamicDisplay.obj TO .\Objects\10dynamicDisplay PRINT (.\Listings\10dynamicDi
+>> splay.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\1001dynamicDisplay.obj (1001DYNAMICDISPLAY)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (PRINTF)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDPTR)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDOPTR)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (?C?CSTPTR)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (?C?PLDIIDATA)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (?C?CCASE)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (PUTCHAR)
+
+
+LINK MAP OF MODULE:  .\Objects\10dynamicDisplay (1001DYNAMICDISPLAY)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0015H     UNIT         _DATA_GROUP_
+                    001DH     0003H                  *** GAP ***
+            BIT     0020H.0   0001H.1   UNIT         _BIT_GROUP_
+                    0021H.1   0000H.7                *** GAP ***
+            DATA    0022H     000AH     UNIT         ?DT?1001DYNAMICDISPLAY
+            IDATA   002CH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     035CH     UNIT         ?PR?PRINTF?PRINTF
+            CODE    035FH     008EH     UNIT         ?C?LIB_CODE
+            CODE    03EDH     008CH     UNIT         ?C_C51STARTUP
+            CODE    0479H     0066H     UNIT         ?PR?_STATICDISPLAY?1001DYNAMICDISPLAY
+            CODE    04DFH     003AH     UNIT         ?PR?MAIN?1001DYNAMICDISPLAY
+            CODE    0519H     0027H     UNIT         ?PR?PUTCHAR?PUTCHAR
+            CODE    0540H     0016H     UNIT         ?PR?_SETTIMEOUT?1001DYNAMICDISPLAY
+            CODE    0556H     000DH     UNIT         ?C_INITSEG
+            CODE    0563H     0008H     UNIT         ?CO?1001DYNAMICDISPLAY
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\10dynamicDisplay (1001DYNAMICDISPLAY)
+
+
+SEGMENT                                          BIT_GROUP          DATA_GROUP 
+  +--> CALLED SEGMENT                         START    LENGTH     START    LENGTH
+---------------------------------------------------------------------------------
+?C_C51STARTUP                                 -----    -----      -----    -----
+  +--> ?PR?MAIN?1001DYNAMICDISPLAY
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/22/2022  23:32:58  PAGE 2
+
+
+  +--> ?C_INITSEG
+
+?PR?MAIN?1001DYNAMICDISPLAY                   -----    -----      -----    -----
+  +--> ?PR?_STATICDISPLAY?1001DYNAMICDISPLAY
+
+?PR?_STATICDISPLAY?1001DYNAMICDISPLAY         -----    -----      0008H    0001H
+  +--> ?CO?1001DYNAMICDISPLAY
+  +--> ?PR?PRINTF?PRINTF
+  +--> ?PR?_SETTIMEOUT?1001DYNAMICDISPLAY
+
+?PR?PRINTF?PRINTF                             0020H.0  0001H.1    0009H    0014H
+  +--> ?PR?PUTCHAR?PUTCHAR
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\10dynamicDisplay (1001DYNAMICDISPLAY)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        1001DYNAMICDISPLAY
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  B:00A0H.2       PUBLIC        P2_2
+  B:00A0H.3       PUBLIC        P2_3
+  B:00A0H.4       PUBLIC        P2_4
+  C:04DFH         PUBLIC        main
+  C:0540H         PUBLIC        _setTimeout
+  C:0479H         PUBLIC        _staticDisplay
+  D:0022H         PUBLIC        displayNumber
+  -------         PROC          MAIN
+  C:04DFH         LINE#         10
+  C:04DFH         LINE#         12
+  C:04DFH         LINE#         25
+  C:04E6H         LINE#         27
+  C:04EDH         LINE#         29
+  C:04F4H         LINE#         31
+  C:04FBH         LINE#         33
+  C:0502H         LINE#         35
+  C:0509H         LINE#         37
+  C:0510H         LINE#         39
+  C:0517H         LINE#         41
+  -------         ENDPROC       MAIN
+  -------         PROC          _STATICDISPLAY
+  D:0007H         SYMBOL        location
+  D:0008H         SYMBOL        num
+  C:0479H         LINE#         44
+  C:047BH         LINE#         46
+  C:047EH         LINE#         47
+  C:0480H         LINE#         48
+  C:0480H         LINE#         49
+  C:0480H         LINE#         50
+  C:0485H         LINE#         51
+  C:0487H         LINE#         52
+  C:0487H         LINE#         53
+  C:0487H         LINE#         54
+  C:048CH         LINE#         55
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/22/2022  23:32:58  PAGE 3
+
+
+  C:048EH         LINE#         56
+  C:048EH         LINE#         57
+  C:048EH         LINE#         58
+  C:0493H         LINE#         59
+  C:0495H         LINE#         60
+  C:0495H         LINE#         61
+  C:0495H         LINE#         62
+  C:049AH         LINE#         63
+  C:049CH         LINE#         64
+  C:049EH         LINE#         65
+  C:04A0H         LINE#         66
+  C:04A5H         LINE#         67
+  C:04A7H         LINE#         68
+  C:04A9H         LINE#         69
+  C:04ABH         LINE#         70
+  C:04B0H         LINE#         71
+  C:04B2H         LINE#         72
+  C:04B4H         LINE#         73
+  C:04B6H         LINE#         74
+  C:04BBH         LINE#         75
+  C:04BDH         LINE#         76
+  C:04BFH         LINE#         77
+  C:04C1H         LINE#         78
+  C:04C3H         LINE#         79
+  C:04CCH         LINE#         80
+  C:04CCH         LINE#         82
+  C:04D4H         LINE#         84
+  C:04DBH         LINE#         85
+  C:04DEH         LINE#         86
+  -------         ENDPROC       _STATICDISPLAY
+  -------         PROC          _SETTIMEOUT
+  D:0006H         SYMBOL        delayTime
+  -------         DO            
+  D:0005H         SYMBOL        i
+  D:0004H         SYMBOL        j
+  -------         ENDDO         
+  C:0540H         LINE#         88
+  C:0540H         LINE#         89
+  C:0540H         LINE#         92
+  C:054AH         LINE#         93
+  C:054BH         LINE#         94
+  C:054DH         LINE#         95
+  C:054FH         LINE#         97
+  C:054FH         LINE#         98
+  C:0551H         LINE#         99
+  C:0553H         LINE#         100
+  C:0555H         LINE#         102
+  -------         ENDPROC       _SETTIMEOUT
+  -------         ENDMOD        1001DYNAMICDISPLAY
+
+  -------         MODULE        PRINTF
+  D:0009H         PUBLIC        ?_PRINTF517?BYTE
+  D:0009H         PUBLIC        ?_PRINTF?BYTE
+  D:0009H         PUBLIC        ?_SPRINTF517?BYTE
+  D:0009H         PUBLIC        ?_SPRINTF?BYTE
+  C:0065H         PUBLIC        _PRINTF
+  C:0065H         PUBLIC        _PRINTF517
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/22/2022  23:32:58  PAGE 4
+
+
+  C:005FH         PUBLIC        _SPRINTF
+  C:005FH         PUBLIC        _SPRINTF517
+  -------         ENDMOD        PRINTF
+
+  -------         MODULE        ?C?CLDPTR
+  C:035FH         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+  -------         MODULE        ?C?CLDOPTR
+  C:0378H         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+  -------         MODULE        ?C?CSTPTR
+  C:03A5H         PUBLIC        ?C?CSTPTR
+  -------         ENDMOD        ?C?CSTPTR
+
+  -------         MODULE        ?C?PLDIIDATA
+  C:03B7H         PUBLIC        ?C?PLDIIDATA
+  -------         ENDMOD        ?C?PLDIIDATA
+
+  -------         MODULE        ?C?CCASE
+  C:03C7H         PUBLIC        ?C?CCASE
+  -------         ENDMOD        ?C?CCASE
+
+  -------         MODULE        PUTCHAR
+  C:0519H         PUBLIC        _PUTCHAR
+  -------         ENDMOD        PUTCHAR
+
+Program Size: data=41.1 xdata=0 code=1387
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

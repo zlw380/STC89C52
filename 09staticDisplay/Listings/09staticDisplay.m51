@@ -1,0 +1,241 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        10/22/2022  11:15:54  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+F:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\0901staticDisplay.obj TO .\Objects\09staticDisplay PRINT (.\Listings\09staticDispl
+>> ay.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\0901staticDisplay.obj (0901STATICDISPLAY)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (PRINTF)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDPTR)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDOPTR)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (?C?CSTPTR)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (?C?PLDIIDATA)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (?C?CCASE)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (PUTCHAR)
+
+
+LINK MAP OF MODULE:  .\Objects\09staticDisplay (0901STATICDISPLAY)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0015H     UNIT         _DATA_GROUP_
+                    001DH     0003H                  *** GAP ***
+            BIT     0020H.0   0001H.1   UNIT         _BIT_GROUP_
+                    0021H.1   0000H.7                *** GAP ***
+            IDATA   0022H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     035CH     UNIT         ?PR?PRINTF?PRINTF
+            CODE    035FH     00B6H     UNIT         ?PR?_STATICDISPLAY?0901STATICDISPLAY
+            CODE    0415H     008EH     UNIT         ?C?LIB_CODE
+            CODE    04A3H     0052H     UNIT         ?PR?MAIN?0901STATICDISPLAY
+            CODE    04F5H     0027H     UNIT         ?PR?PUTCHAR?PUTCHAR
+            CODE    051CH     001AH     UNIT         ?PR?_SETTIMEOUT?0901STATICDISPLAY
+            CODE    0536H     0010H     UNIT         ?CO?0901STATICDISPLAY
+            CODE    0546H     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\09staticDisplay (0901STATICDISPLAY)
+
+
+SEGMENT                                         BIT_GROUP          DATA_GROUP 
+  +--> CALLED SEGMENT                        START    LENGTH     START    LENGTH
+--------------------------------------------------------------------------------
+?C_C51STARTUP                                -----    -----      -----    -----
+  +--> ?PR?MAIN?0901STATICDISPLAY
+
+?PR?MAIN?0901STATICDISPLAY                   -----    -----      -----    -----
+  +--> ?PR?_STATICDISPLAY?0901STATICDISPLAY
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/22/2022  11:15:54  PAGE 2
+
+
+  +--> ?PR?_SETTIMEOUT?0901STATICDISPLAY
+
+?PR?_STATICDISPLAY?0901STATICDISPLAY         -----    -----      0008H    0001H
+  +--> ?CO?0901STATICDISPLAY
+  +--> ?PR?PRINTF?PRINTF
+
+?PR?PRINTF?PRINTF                            0020H.0  0001H.1    0009H    0014H
+  +--> ?PR?PUTCHAR?PUTCHAR
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\09staticDisplay (0901STATICDISPLAY)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        0901STATICDISPLAY
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  B:00A0H.2       PUBLIC        P2_2
+  B:00A0H.3       PUBLIC        P2_3
+  B:00A0H.4       PUBLIC        P2_4
+  C:04A3H         PUBLIC        main
+  C:0520H         PUBLIC        _setTimeout
+  C:035FH         PUBLIC        _staticDisplay
+  -------         PROC          MAIN
+  C:04A3H         LINE#         8
+  C:04A3H         LINE#         25
+  C:04A3H         LINE#         26
+  C:04AAH         LINE#         27
+  C:04ADH         LINE#         28
+  C:04B4H         LINE#         29
+  C:04B7H         LINE#         30
+  C:04BEH         LINE#         31
+  C:04C1H         LINE#         32
+  C:04C8H         LINE#         33
+  C:04CBH         LINE#         34
+  C:04D2H         LINE#         35
+  C:04D5H         LINE#         36
+  C:04DCH         LINE#         37
+  C:04DFH         LINE#         38
+  C:04E6H         LINE#         39
+  C:04E9H         LINE#         40
+  C:04F0H         LINE#         41
+  C:04F3H         LINE#         42
+  -------         ENDPROC       MAIN
+  -------         PROC          _STATICDISPLAY
+  D:0007H         SYMBOL        location
+  D:0008H         SYMBOL        num
+  C:035FH         LINE#         45
+  C:0361H         LINE#         47
+  C:0364H         LINE#         48
+  C:0366H         LINE#         49
+  C:0366H         LINE#         50
+  C:0366H         LINE#         51
+  C:036BH         LINE#         52
+  C:036DH         LINE#         53
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/22/2022  11:15:54  PAGE 3
+
+
+  C:036DH         LINE#         54
+  C:036DH         LINE#         55
+  C:0372H         LINE#         56
+  C:0374H         LINE#         57
+  C:0374H         LINE#         58
+  C:0374H         LINE#         59
+  C:0379H         LINE#         60
+  C:037BH         LINE#         61
+  C:037BH         LINE#         62
+  C:037BH         LINE#         63
+  C:0380H         LINE#         64
+  C:0382H         LINE#         65
+  C:0384H         LINE#         66
+  C:0386H         LINE#         67
+  C:038BH         LINE#         68
+  C:038DH         LINE#         69
+  C:038FH         LINE#         70
+  C:0391H         LINE#         71
+  C:0396H         LINE#         72
+  C:0398H         LINE#         73
+  C:039AH         LINE#         74
+  C:039CH         LINE#         75
+  C:03A1H         LINE#         76
+  C:03A3H         LINE#         77
+  C:03A5H         LINE#         78
+  C:03A7H         LINE#         79
+  C:03A9H         LINE#         80
+  C:03B2H         LINE#         81
+  C:03B2H         LINE#         83
+  C:03B6H         LINE#         84
+  C:03B9H         LINE#         85
+  C:03BFH         LINE#         86
+  C:03C2H         LINE#         87
+  C:03C8H         LINE#         88
+  C:03CBH         LINE#         89
+  C:03D1H         LINE#         90
+  C:03D4H         LINE#         91
+  C:03DAH         LINE#         92
+  C:03DDH         LINE#         93
+  C:03E3H         LINE#         94
+  C:03E6H         LINE#         95
+  C:03ECH         LINE#         96
+  C:03EFH         LINE#         97
+  C:03F5H         LINE#         98
+  C:03F8H         LINE#         99
+  C:03FEH         LINE#         100
+  C:0401H         LINE#         101
+  C:0407H         LINE#         102
+  C:040AH         LINE#         103
+  C:040BH         LINE#         104
+  C:0414H         LINE#         105
+  C:0414H         LINE#         106
+  -------         ENDPROC       _STATICDISPLAY
+  C:051CH         SYMBOL        L?0055
+  -------         PROC          L?0054
+  -------         ENDPROC       L?0054
+  C:051CH         SYMBOL        L?0055
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/22/2022  11:15:54  PAGE 4
+
+
+  -------         PROC          _SETTIMEOUT
+  D:0006H         SYMBOL        delayTime
+  -------         DO            
+  D:0005H         SYMBOL        i
+  D:0004H         SYMBOL        j
+  -------         ENDDO         
+  C:0520H         LINE#         108
+  C:0520H         LINE#         109
+  C:0520H         LINE#         112
+  C:052AH         LINE#         113
+  C:052BH         LINE#         114
+  C:052DH         LINE#         115
+  C:052FH         LINE#         117
+  C:052FH         LINE#         118
+  C:0531H         LINE#         119
+  C:0533H         LINE#         120
+  C:0535H         LINE#         122
+  -------         ENDPROC       _SETTIMEOUT
+  -------         ENDMOD        0901STATICDISPLAY
+
+  -------         MODULE        PRINTF
+  D:0009H         PUBLIC        ?_PRINTF517?BYTE
+  D:0009H         PUBLIC        ?_PRINTF?BYTE
+  D:0009H         PUBLIC        ?_SPRINTF517?BYTE
+  D:0009H         PUBLIC        ?_SPRINTF?BYTE
+  C:0065H         PUBLIC        _PRINTF
+  C:0065H         PUBLIC        _PRINTF517
+  C:005FH         PUBLIC        _SPRINTF
+  C:005FH         PUBLIC        _SPRINTF517
+  -------         ENDMOD        PRINTF
+
+  -------         MODULE        ?C?CLDPTR
+  C:0415H         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+  -------         MODULE        ?C?CLDOPTR
+  C:042EH         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+  -------         MODULE        ?C?CSTPTR
+  C:045BH         PUBLIC        ?C?CSTPTR
+  -------         ENDMOD        ?C?CSTPTR
+
+  -------         MODULE        ?C?PLDIIDATA
+  C:046DH         PUBLIC        ?C?PLDIIDATA
+  -------         ENDMOD        ?C?PLDIIDATA
+
+  -------         MODULE        ?C?CCASE
+  C:047DH         PUBLIC        ?C?CCASE
+  -------         ENDMOD        ?C?CCASE
+
+  -------         MODULE        PUTCHAR
+  C:04F5H         PUBLIC        _PUTCHAR
+  -------         ENDMOD        PUTCHAR
+
+Program Size: data=31.1 xdata=0 code=1362
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

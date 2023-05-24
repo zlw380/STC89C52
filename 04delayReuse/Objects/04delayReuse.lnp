@@ -1,0 +1,3 @@
+".\Objects\0401delayReuse.obj" 
+TO ".\Objects\04delayReuse" 
+PRINT(".\Listings\04delayReuse.m51") RAMSIZE(256) 

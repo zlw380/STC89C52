@@ -1,0 +1,107 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        10/19/2022  12:29:20  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+F:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\0401delayReuse.obj TO .\Objects\04delayReuse PRINT (.\Listings\04delayReuse.m51) R
+>> AMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\0401delayReuse.obj (0401DELAYREUSE)
+  F:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\04delayReuse (0401DELAYREUSE)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0034H     UNIT         ?PR?MAIN?0401DELAYREUSE
+            CODE    0037H     0019H     UNIT         ?PR?_DELAYTIME?0401DELAYREUSE
+            CODE    0050H     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\04delayReuse (0401DELAYREUSE)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?0401DELAYREUSE
+
+?PR?MAIN?0401DELAYREUSE
+  +--> ?PR?_DELAYTIME?0401DELAYREUSE
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\04delayReuse (0401DELAYREUSE)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        0401DELAYREUSE
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  C:003BH         PUBLIC        _delayTime
+  C:0003H         PUBLIC        main
+  -------         PROC          MAIN
+  C:0003H         LINE#         6
+  C:0003H         LINE#         7
+BL51 BANKED LINKER/LOCATER V6.22                                                      10/19/2022  12:29:20  PAGE 2
+
+
+  C:0006H         LINE#         8
+  C:0009H         LINE#         9
+  C:000CH         LINE#         10
+  C:000FH         LINE#         11
+  C:0012H         LINE#         12
+  C:0015H         LINE#         13
+  C:0018H         LINE#         14
+  C:001BH         LINE#         15
+  C:001EH         LINE#         16
+  C:0021H         LINE#         17
+  C:0024H         LINE#         18
+  C:0027H         LINE#         19
+  C:002AH         LINE#         20
+  C:002DH         LINE#         21
+  C:0030H         LINE#         22
+  -------         ENDPROC       MAIN
+  C:0037H         SYMBOL        L?0012
+  -------         PROC          L?0011
+  -------         ENDPROC       L?0011
+  C:0037H         SYMBOL        L?0012
+  -------         PROC          _DELAYTIME
+  D:0006H         SYMBOL        sec
+  -------         DO            
+  D:0005H         SYMBOL        i
+  D:0004H         SYMBOL        j
+  -------         ENDDO         
+  C:003BH         LINE#         25
+  C:003BH         LINE#         26
+  C:003BH         LINE#         30
+  C:003FH         LINE#         31
+  C:0040H         LINE#         32
+  C:0042H         LINE#         33
+  C:0044H         LINE#         35
+  C:0044H         LINE#         36
+  C:0046H         LINE#         37
+  C:0048H         LINE#         38
+  C:004DH         LINE#         39
+  C:004FH         LINE#         41
+  -------         ENDPROC       _DELAYTIME
+  -------         ENDMOD        0401DELAYREUSE
+
+Program Size: data=9.0 xdata=0 code=92
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

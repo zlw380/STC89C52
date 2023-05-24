@@ -1,0 +1,3 @@
+".\Objects\main.obj" 
+TO ".\Objects\0101simpleLamp" 
+PRINT(".\Listings\0101simpleLamp.m51") RAMSIZE(256) 

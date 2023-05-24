@@ -1,0 +1,6 @@
+".\Objects\main.obj",
+".\Objects\Delay.obj",
+".\Objects\LCD1602.obj",
+".\Objects\matrixKey.obj" 
+TO ".\Objects\14matrixKeysPwdLock" 
+PRINT(".\Listings\14matrixKeysPwdLock.m51") RAMSIZE(256) 

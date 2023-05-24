@@ -1,0 +1,6 @@
+".\Objects\main.obj",
+".\Objects\Delay.obj",
+".\Objects\Timer0.obj",
+".\Objects\UART.obj" 
+TO ".\Objects\18UART" 
+PRINT(".\Listings\18UART.m51") RAMSIZE(256) 

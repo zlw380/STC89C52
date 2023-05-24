@@ -1,0 +1,7 @@
+".\Objects\main.obj",
+".\Objects\Delay.obj",
+".\Objects\UART.obj",
+".\Objects\matrixKey.obj",
+".\Objects\LCD1602.obj" 
+TO ".\Objects\19UARTPC2MCU" 
+PRINT(".\Listings\19UARTPC2MCU.m51") RAMSIZE(256) 

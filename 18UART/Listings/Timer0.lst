@@ -1,0 +1,74 @@
+C51 COMPILER V9.54   TIMER0                                                                04/19/2023 10:04:39 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE TIMER0
+OBJECT MODULE PLACED IN .\Objects\Timer0.obj
+COMPILER INVOKED BY: F:\Keil_v5\C51\BIN\C51.EXE Timer0.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\Ti
+                    -mer0.lst) OBJECT(.\Objects\Timer0.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          
+   3          /**
+   4            * @brief  定时器0初始化，1毫秒@11.0592MHZ
+   5            * @param  无
+   6            * @retval 无
+   7            */
+   8          void Timer0_Init(){
+   9   1      
+  10   1              ET0 = 1;
+  11   1              //允许总中断
+  12   1              EA = 1;
+  13   1              //配置定时器0中断优先级
+  14   1              //只设置了IP寄存器，配置T0中断为低优先级
+  15   1              PT0 = 0;
+  16   1              
+  17   1              //AUXR &= 0x7F;         //定时器时钟12T模式
+  18   1              TMOD &= 0xF0;           //设置定时器模式，保持TMOD高四位不变，低四位置0
+  19   1              TMOD |= 0x01;           //设置定时器模式，TMOD高四位不变，低四位置为0001
+  20   1              //低四位为控制定时器0工作模式的四位
+  21   1              //此时门控端置0，不受外部中断影响，并设置为16位定时器
+  22   1              //定时寄存器初值转换为二进制为：1111 1100（TH） 0110 0110（TL）
+  23   1              //
+  24   1              TL0 = 0x66;             //设置定时初值
+  25   1              TH0 = 0xFC;             //设置定时初值
+  26   1              TF0 = 0;                //清除TF0标志
+  27   1              TR0 = 1;                //定时器0开始计时
+  28   1      }
+  29          
+  30          /*
+  31          //该函数响应定时器0的中断，当触发T0中断时，执行该中断子程序
+  32          void Timer0_Routine() interrupt 1{
+  33                  
+  34                  static unsigned int t0Count = 0;
+  35                  
+  36                  //每次T0中断后计数器值置0，因此T0计数器需重新赋值
+  37                  TL0 = 0x66;             //设置定时初值
+  38                  TH0 = 0xFC;             //设置定时初值
+  39                  
+  40                  t0Count++;
+  41                  //驱动LCD屏实时显示数字会导致比较大的延迟
+  42                  //LCD_Init();
+  43                  //LCD_ShowNum(1,1,t0Count,5);
+  44                  if(t0Count >= 1000){
+  45                          t0Count = 0;
+  46                  }
+  47          }
+  48          */
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     23    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+C51 COMPILER V9.54   TIMER0                                                                04/19/2023 10:04:39 PAGE 2   
+
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

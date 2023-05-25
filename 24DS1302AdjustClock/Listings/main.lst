@@ -1,0 +1,213 @@
+C51 COMPILER V9.54   MAIN                                                                  05/20/2023 12:31:47 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: F:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include "DS1302.h"
+   3          #include "LCD1602.h"
+   4          #include "Key.h"
+   5          #include "Timer0.h"
+   6          
+   7          //定义独立按键键值，模式，时间设置选择变量，时间设置闪烁标志位
+   8          unsigned char keyNumber,MODE,timeSetSelect,timeSetFlashFlag;
+   9          
+  10          //时间显示模式，不断从DS1302读取时间信息并显示
+  11          void timeShow(){
+  12   1              DS1302_GetTime();
+  13   1              LCD_ShowNum(1,1,DS1302_Time[0],2);
+  14   1              LCD_ShowNum(1,4,DS1302_Time[1],2);
+  15   1              LCD_ShowNum(1,7,DS1302_Time[2],2);
+  16   1              //LCD_ShowNum(1,16,DS1302_Time[6],1);
+  17   1              LCD_ShowNum(2,1,DS1302_Time[3],2);
+  18   1              LCD_ShowNum(2,4,DS1302_Time[4],2);
+  19   1              LCD_ShowNum(2,7,DS1302_Time[5],2);
+  20   1      }
+  21          
+  22          //时间设置模式
+  23          void timeSet(){
+  24   1              if(keyNumber == 2){
+  25   2                      timeSetSelect++;
+  26   2                      //时间设置选择位取余，该位等于0-5时值不变，等于6时清零
+  27   2                      timeSetSelect %= 6;
+  28   2              }
+  29   1              if(keyNumber == 3){
+  30   2                      DS1302_Time[timeSetSelect]++;
+  31   2                      //参数合法性检查
+  32   2                      if(DS1302_Time[0] > 99){DS1302_Time[0] = 0;}
+  33   2                      if(DS1302_Time[1] > 12){DS1302_Time[1] = 1;}
+  34   2                      //检查月份，若为1 3 5 7 8 10 12月，大于31归1，若为4 6 9 11月，大于30归1 ，若为2�
+             -�，分润平年，分别大于29与28归1
+  35   2                      if(DS1302_Time[1] == 1 || DS1302_Time[1] == 3 || DS1302_Time[1] == 5 ||
+  36   2                      DS1302_Time[1] == 7 || DS1302_Time[1] == 8 ||
+  37   2                      DS1302_Time[1] == 10 || DS1302_Time[1] == 12){
+  38   3                              if(DS1302_Time[2] > 31){DS1302_Time[2] = 1;}
+  39   3                      }else if(DS1302_Time[1] == 4 || DS1302_Time[1] == 6 ||
+  40   2                      DS1302_Time[1] == 9 || DS1302_Time[1] == 11){
+  41   3                              if(DS1302_Time[2] > 30){DS1302_Time[2] = 1;}
+  42   3                      }else if(DS1302_Time[1] == 2){
+  43   3                              //如果是闰年则日大于29时归1，若不是闰年则日大于28归1
+  44   3                              if(DS1302_Time[0]%4 == 0 || DS1302_Time[0] == 0){
+  45   4                                      if(DS1302_Time[2] > 29){DS1302_Time[2] = 1;}
+  46   4                              }else if(DS1302_Time[0]%4 && DS1302_Time[0] != 0){
+  47   4                                      if(DS1302_Time[2] > 28){DS1302_Time[2] = 1;}
+  48   4                              }
+  49   3                      }
+  50   2                      
+  51   2                      if(DS1302_Time[3] > 23){DS1302_Time[3] = 0;}
+  52   2                      if(DS1302_Time[4] > 59){DS1302_Time[4] = 0;}
+  53   2                      if(DS1302_Time[5] > 59){DS1302_Time[5] = 0;}
+C51 COMPILER V9.54   MAIN                                                                  05/20/2023 12:31:47 PAGE 2   
+
+  54   2                      
+  55   2              }
+  56   1              if(keyNumber == 4){
+  57   2                      DS1302_Time[timeSetSelect]--;
+  58   2                      //参数合法性检查
+  59   2                      //unsigned char无符号字符型最大值为255，因此减到255时直接置日期最大值
+  60   2                      if(DS1302_Time[0] == 255){DS1302_Time[0] = 99;}
+  61   2                      if(DS1302_Time[1] < 1){DS1302_Time[1] = 12;}
+  62   2                      
+  63   2                      if(DS1302_Time[1] == 1 || DS1302_Time[1] == 3 || DS1302_Time[1] == 5 ||
+  64   2                      DS1302_Time[1] == 7 || DS1302_Time[1] == 8 ||
+  65   2                      DS1302_Time[1] == 10 || DS1302_Time[1] == 12){
+  66   3                              if(DS1302_Time[2] < 1){DS1302_Time[2] = 31;}
+  67   3                      }else if(DS1302_Time[1] == 4 || DS1302_Time[1] == 6 ||
+  68   2                      DS1302_Time[1] == 9 || DS1302_Time[1] == 11){
+  69   3                              //选择小月下日期时，日期等于31时自动置30
+  70   3                              if(DS1302_Time[2] < 1 || DS1302_Time[2] == 31){DS1302_Time[2] = 30;}
+  71   3                      }else if(DS1302_Time[1] == 2){          
+  72   3                              if(DS1302_Time[0]%4 == 0 || DS1302_Time[0] == 0){
+  73   4                                      //2月下闰年时，日期小于1或大于29，都会被置为29
+  74   4                                      if(DS1302_Time[2] < 1 || DS1302_Time[2] > 29){DS1302_Time[2] = 29;}
+  75   4                              }else if(DS1302_Time[0]%4 && DS1302_Time[0] != 0){
+  76   4                                      //2月下平年时，日期小于1或大于28，都会被置为28
+  77   4                                      if(DS1302_Time[2] < 1 || DS1302_Time[2] > 28){DS1302_Time[2] = 28;}
+  78   4                              }
+  79   3                      }
+  80   2                      
+  81   2                      if(DS1302_Time[3] == 255){DS1302_Time[3] = 23;}
+  82   2                      if(DS1302_Time[4] == 255){DS1302_Time[4] = 59;}
+  83   2                      if(DS1302_Time[5] == 255){DS1302_Time[5] = 59;}
+  84   2              }
+  85   1              
+  86   1              //修改时间后更新显示
+  87   1              //注意这里不要把前面的时间读取函数复制过来，不然你按下按键1时间还是会变
+             -化
+  88   1              //因为此时并没有把修改后的时间写入DS1302，而只是再从DS1302读取了一次原有的
+  89   1              
+  90   1              //闪烁显示：当时间设置选择对位且闪烁标志位置1时，用空字符串覆盖数显达到
+             -隐藏的效果。
+  91   1              //否则正常显示
+  92   1              if(timeSetSelect == 0 && timeSetFlashFlag == 1){
+  93   2                      LCD_ShowString(1,1,"  ");
+  94   2              }else{
+  95   2                      LCD_ShowNum(1,1,DS1302_Time[0],2);
+  96   2              }
+  97   1              if(timeSetSelect == 1 && timeSetFlashFlag == 1){
+  98   2                      LCD_ShowString(1,4,"  ");
+  99   2              }else{
+ 100   2                      LCD_ShowNum(1,4,DS1302_Time[1],2);
+ 101   2              }
+ 102   1              if(timeSetSelect == 2 && timeSetFlashFlag == 1){
+ 103   2                      LCD_ShowString(1,7,"  ");
+ 104   2              }else{
+ 105   2                      LCD_ShowNum(1,7,DS1302_Time[2],2);
+ 106   2              }
+ 107   1              if(timeSetSelect == 3 && timeSetFlashFlag == 1){
+ 108   2                      LCD_ShowString(2,1,"  ");
+ 109   2              }else{
+ 110   2                      LCD_ShowNum(2,1,DS1302_Time[3],2);
+ 111   2              }
+ 112   1              if(timeSetSelect == 4 && timeSetFlashFlag == 1){
+ 113   2                      LCD_ShowString(2,4,"  ");
+C51 COMPILER V9.54   MAIN                                                                  05/20/2023 12:31:47 PAGE 3   
+
+ 114   2              }else{
+ 115   2                      LCD_ShowNum(2,4,DS1302_Time[4],2);
+ 116   2              }
+ 117   1              if(timeSetSelect == 5 && timeSetFlashFlag == 1){
+ 118   2                      LCD_ShowString(2,7,"  ");
+ 119   2              }else{
+ 120   2                      LCD_ShowNum(2,7,DS1302_Time[5],2);
+ 121   2              }
+ 122   1              
+ 123   1              //LCD_ShowNum(1,16,DS1302_Time[6],1);
+ 124   1              //LCD_ShowNum(1,15,timeSetFlashFlag,2);
+ 125   1      }
+ 126          
+ 127          void main(){
+ 128   1              
+ 129   1              LCD_Init();
+ 130   1              DS1302_Init();
+ 131   1              Timer0_Init();
+ 132   1              DS1302_SetTime();
+ 133   1              LCD_ShowString(1,1,"  -  -");
+ 134   1              LCD_ShowString(2,1,"  :  :");
+ 135   1              
+ 136   1              while(1){
+ 137   2                      keyNumber = pressKey();
+ 138   2                      //当检测到独立按键输入键值为1时，修改MODE的值。
+ 139   2                      if(keyNumber == 1){
+ 140   3                              //因为mode这里是char变量，有多个位，取反就不是0和1互相切换了，是0和FF。
+ 141   3                              if(MODE == 0){
+ 142   4                                      MODE = 1;
+ 143   4                                      timeSetSelect = 0;
+ 144   4                              } else if(MODE == 1){
+ 145   4                                      //出现SetTime无法更新时间的原因是在该函数中开了写保护
+ 146   4                                      //因为如果开了写入保护，控制写入保护的0x8E寄存器也被保护了，
+ 147   4                                      //你也无法靠写入0x8E来关闭保护，所以你一旦开了写入保护，你就无法关闭了
+             - ---SCUPI
+ 148   4                                      DS1302_SetTime();
+ 149   4                                      MODE = 0;
+ 150   4                              }
+ 151   3                      }
+ 152   2                      //根据MODE的值，分别进入显示模式与设置模式。
+ 153   2                      if(MODE == 0){
+ 154   3                              timeShow();
+ 155   3                      } else{
+ 156   3                              timeSet();
+ 157   3                      }
+ 158   2                      //LCD_ShowNum(2,15,timeSetSelect,2);
+ 159   2              }
+ 160   1      }
+ 161          
+ 162          void Timer0_Routine() interrupt 1{
+ 163   1              
+ 164   1              static unsigned int t0Count = 0;
+ 165   1              
+ 166   1              //每次T0中断后计数器值置0，因此T0计数器需重新赋值
+ 167   1              TL0 = 0x66;             //设置定时初值
+ 168   1              TH0 = 0xFC;             //设置定时初值
+ 169   1              
+ 170   1              t0Count++;
+ 171   1      
+ 172   1              if(t0Count >= 700){
+ 173   2                      if(MODE == 1){
+ 174   3                              //!是逻辑取反，~是按位取反，如0x00按位取反后为0xFF
+C51 COMPILER V9.54   MAIN                                                                  05/20/2023 12:31:47 PAGE 4   
+
+ 175   3                              timeSetFlashFlag = !timeSetFlashFlag;
+ 176   3                      }
+ 177   2                      t0Count = 0;
+ 178   2              }
+ 179   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    894    ----
+   CONSTANT SIZE    =     17    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      6    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

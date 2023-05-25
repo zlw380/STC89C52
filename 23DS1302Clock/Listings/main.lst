@@ -1,0 +1,117 @@
+C51 COMPILER V9.54   MAIN                                                                  05/18/2023 19:13:28 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: F:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include "LCD1602.h"
+   3          #include "DS1302.h"
+   4          #include "Delay.h"
+   5          
+   6          //unsigned char second,minute,hour;
+   7          
+   8          void main(){
+   9   1              
+  10   1              LCD_Init();
+  11   1              DS1302_Init();
+  12   1              LCD_ShowString(1,1,"  -  -    week:");
+  13   1              LCD_ShowString(2,1,"  :  :  ");
+  14   1              //DS1302_WriteByte(0x8E,0x00);  //解除写保护
+  15   1              /*
+  16   1              这里给DS1302秒寄存器传的参数是以BCD码的形式传送的，同样地，DS1302回传到单片
+             -机的秒数也是以BCD码的形式。
+  17   1              进位也是按BCD码的规则进的，而转十进制时是按二进制转十进制的规则来转的。
+  18   1              比如，给1302传送的秒数初值0x03中的0和3是分开采用BCD码，即0000和0011
+  19   1              而秒数随时钟从0x09增加到0x10时（依然是BCD码）
+  20   1              如果按二进制规则，BCD码也会从0000 1001增加到0000 1010
+  21   1              而在BCD码中1010是不合法的，因为1010转换为十进制是10，而10并不能作为个位数
+  22   1              所以这里会直接进位，进位后的BCD码为0001 0000，当作二进制数转换为十进制就是
+             -16
+  23   1              这就是为什么屏幕显示会从009直接跳到016的原因
+  24   1              
+  25   1              同理，屏显也会从025跳到032
+  26   1              25对应的BCD码为0001 1001，进位后即为0010 0000，当作二进制数的话对应的十进制数�
+             -��好是32
+  27   1              
+  28   1              所以，要想让屏显正常显示秒数，就要把BCD码转十进制，而不是像之前那样把BCD
+             -码按二进制数转换为十进制数
+  29   1              */
+  30   1              //DS1302_WriteByte(0x80,0x50);  //这里的0x03实际上是BCD码形式传输
+  31   1              
+  32   1              DS1302_SetTime();
+  33   1      
+  34   1              while(1){
+  35   2                      //LCD_ShowString(1,1,"TEST");
+  36   2                      /*
+  37   2                      second = DS1302_ReadByte(0x81);
+  38   2                      minute = DS1302_ReadByte(0x83);
+  39   2                      hour = DS1302_ReadByte(0x85);
+  40   2                      */
+  41   2                      /*
+  42   2                      在本程序中：
+  43   2                      BCD码转十进制公式
+  44   2                      （有歧义，实际上就是将回传的BCD码以十进制形式代入公式计算出结果并使用�
+             -�示十进制整型的函数打印在屏幕上）：
+  45   2                      DEC=BCD/16*10+BCD%16; （2位BCD）
+  46   2                      同时该公式也只能用于转换两位的BCD码，因为两位BCD码相当于两位16进制数，
+  47   2                      转换为十进制整数后除以16能够保证得到的值是一个个位数，再乘以10即为二位B
+             -CD码/16进制数的高位
+  48   2                      所以该公式适用的BCD码最大值为0x99，对应的十进制数是153，
+C51 COMPILER V9.54   MAIN                                                                  05/18/2023 19:13:28 PAGE 2   
+
+  49   2                      转为BCD码就是九次逢16进1，高位为9，再加上余下的9为低位，即为（0x）99
+  50   2                      
+  51   2                      所以如果是三位BCD码那么公式就要变为对应的十进制整数除以16的平方为最高位
+             -了
+  52   2                      比如0x100，对应的十进制为256,256/(16*16) = 1，1即为最高位……
+  53   2                      
+  54   2                      十进制转BCD码（同理）：
+  55   2                      BCD=DEC/10*16+DEC%10; （2位BCD）
+  56   2                      其实这里直接显示十六进制数就可以匹配BCD码了
+  57   2                      */
+  58   2                      //LCD_ShowNum(2,7,second / 16 * 10 + second % 16,2);
+  59   2                      //LCD_ShowNum，该函数为让LCD显示变量的十进制整型值
+  60   2                      //因此这里要显示的second变量实际上已经是以十进制形式参与运算了，然后通过
+             -公式将其转为看似为2位BCD码的十进制数
+  61   2                      //比如回传的BCD码为0x85，其对应的十进制数是133，将133代入公式133/16*10 + 133%16 =
+             - 85，于是便会显示85
+  62   2                      //LCD_ShowHexNum(2,1,second,3);
+  63   2                      //setTimeout(50);
+  64   2                      //LCD_ShowNum(2,4,minute / 16 * 10 + minute % 16,2);
+  65   2                      //LCD_ShowNum(2,1,hour / 16 * 10 + hour % 16,2);
+  66   2                      
+  67   2                      DS1302_GetTime();
+  68   2                      LCD_ShowNum(1,1,DS1302_Time[0],2);
+  69   2                      //LCD_ShowChar(1,3,'-');
+  70   2                      LCD_ShowNum(1,4,DS1302_Time[1],2);
+  71   2                      //LCD_ShowChar(1,6,'-');
+  72   2                      LCD_ShowNum(1,7,DS1302_Time[2],2);
+  73   2                      //LCD_ShowString(1,11,"week:");
+  74   2                      LCD_ShowNum(1,16,DS1302_Time[6],1);
+  75   2                      
+  76   2                      LCD_ShowNum(2,1,DS1302_Time[3],2);
+  77   2                      //LCD_ShowChar(2,3,':');
+  78   2                      LCD_ShowNum(2,4,DS1302_Time[4],2);
+  79   2                      //LCD_ShowChar(2,6,':');
+  80   2                      LCD_ShowNum(2,7,DS1302_Time[5],2);
+  81   2              }
+  82   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    145    ----
+   CONSTANT SIZE    =     25    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

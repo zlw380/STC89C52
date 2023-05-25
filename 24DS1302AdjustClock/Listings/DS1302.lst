@@ -1,0 +1,184 @@
+C51 COMPILER V9.54   DS1302                                                                05/20/2023 11:13:18 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE DS1302
+OBJECT MODULE PLACED IN .\Objects\DS1302.obj
+COMPILER INVOKED BY: F:\Keil_v5\C51\BIN\C51.EXE DS1302.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\DS
+                    -1302.lst) OBJECT(.\Objects\DS1302.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          
+   3          sbit DS1302_SCLK = P3^6;
+   4          sbit DS1302_IO = P3^4;
+   5          sbit DS1302_CE = P3^5;
+   6          
+   7          //宏定义，增强可读性
+   8          #define DS1302_SECOND 0x80
+   9          #define DS1302_MINUTE 0x82
+  10          #define DS1302_HOUR 0x84
+  11          #define DS1302_DATE 0x86
+  12          #define DS1302_MONTH 0x88
+  13          #define DS1302_DAY 0x8A
+  14          #define DS1302_YEAR 0x8C
+  15          #define DS1302_WP 0x8E
+  16          
+  17          //用此数组来作为DS1302时钟的缓存
+  18          //当向DS1302写入时间时，将该数组的数据传入
+  19          //当从DS1302读取时间时，将读取到的时间存入该数组
+  20          unsigned char DS1302_Time[] = {23,05,19,23,59,55,5};
+  21          
+  22          /**
+  23            * @brief      初始化DS1302
+  24            * @param      无
+  25            * @retval     无
+  26            */
+  27          void DS1302_Init(){
+  28   1              
+  29   1              DS1302_CE = 0;          //使能置0
+  30   1              DS1302_SCLK = 0;        //时钟置0
+  31   1      }
+  32          
+  33          /**
+  34            * @brief      向DS1302写入时间信息（年/月/日……）
+  35            * @param      command：命令字，clockMsg：时间信息，传入函数后转为BCD码按位与
+  36            * @retval     无
+  37            */
+  38          void DS1302_WriteByte(unsigned char command,unsigned char clockMsg){
+  39   1              
+  40   1              int i,j;
+  41   1              DS1302_CE = 1;
+  42   1              
+  43   1              for(i = 0;i < 8;i++){
+  44   2                      DS1302_IO = command & (0x01 << i);
+  45   2                      DS1302_SCLK = 1;
+  46   2                      DS1302_SCLK = 0;
+  47   2              }
+  48   1              
+  49   1              for(j = 0;j < 8;j++){
+  50   2                      DS1302_IO = clockMsg & (0x01 << j);
+  51   2                      DS1302_SCLK = 1;
+  52   2                      DS1302_SCLK = 0;
+  53   2              }
+  54   1              DS1302_CE = 0;
+C51 COMPILER V9.54   DS1302                                                                05/20/2023 11:13:18 PAGE 2   
+
+  55   1      }
+  56          
+  57          /**
+  58            * @brief      从DS1302读取时间信息（年/月/日……）
+  59            * @param      command：命令字
+  60            * @retval     根据命令字获取到的时间信息（年/月/日/时/分/秒/周几）
+  61            */
+  62          unsigned char DS1302_ReadByte(unsigned char command){
+  63   1              //定义一个字符变量用来接收从DS1302获取的一组8位时钟数据
+  64   1              unsigned char clockMsg = 0x00;
+  65   1              unsigned char msgBit;
+  66   1              int i,j;
+  67   1              //将传入的命令字最低位置1，其他位不变
+  68   1              //这样做是为了在使用命令字的宏定义的时候
+  69   1              //将向DS1302写入数据的命令变更为从DS1302读取数据
+  70   1              //因为宏定义是将写入数据的命令字定义成常量的
+  71   1              //而这里是读取的函数，遂将最低位置1，变更成读取的命令字实现宏定义的复用
+  72   1              command |= 0x01;
+  73   1              DS1302_CE = 1;
+  74   1              
+  75   1              for(i = 0;i < 8;i++){
+  76   2                      DS1302_IO = command & (0x01 << i);
+  77   2                      DS1302_SCLK = 1;
+  78   2                      if(i < 7){
+  79   3                              DS1302_SCLK = 0;
+  80   3                      }
+  81   2              }
+  82   1              
+  83   1              for(j = 0;j < 8;j++){
+  84   2                      DS1302_SCLK = 0;
+  85   2                      if(j < 7){
+  86   3                              DS1302_SCLK = 1;        
+  87   3                      }
+  88   2                      //先触发一个下降沿，DS1302才会将一位数据发送到IO线上
+  89   2                      if(DS1302_IO == 0){
+  90   3                              msgBit = 0x00;
+  91   3                      }else{
+  92   3                              msgBit = 0x01;
+  93   3                      }
+  94   2                      clockMsg |= (msgBit << j);
+  95   2                      /*
+  96   2                      教程的代码是这样把传过来的数据赋给变量的，这种写法确实更简洁
+  97   2                      if(DS1302_IO){clockMsg |= (0x01 << j);}
+  98   2                      */
+  99   2                      /*
+ 100   2                      把时钟的下降与上升沿控制放在后面是错误的X
+ 101   2                      DS1302_SCLK = 0;
+ 102   2                      if(j < 7){
+ 103   2                              DS1302_SCLK = 1;
+ 104   2                      }
+ 105   2                      */
+ 106   2              }
+ 107   1              DS1302_CE = 0;
+ 108   1              DS1302_IO = 0;
+ 109   1              return clockMsg;
+ 110   1      }
+ 111                  
+ 112          /**
+ 113            * @brief      //给DS1302设置全部时间信息，包括年月日时分秒周几。
+ 114            * @param      //无，直接通过数组类型全局变量写入
+ 115            * @retval     //无
+ 116            */
+C51 COMPILER V9.54   DS1302                                                                05/20/2023 11:13:18 PAGE 3   
+
+ 117          void DS1302_SetTime(){
+ 118   1              //DS1302_WriteByte(DS1302_WP,0x00);     //关闭写保护
+ 119   1              //同样地，向DS1302传入时间信息时，
+ 120   1              //时间参数实际上是以十进制的形式发送过去的。
+ 121   1              //这里的公式将BCD码转成了十进制，如年份23,23/10*16 + 23%10 = 35
+ 122   1              //因为如果直接将23传进去，WriteByte函数内就会认为这是十进制的23，而不是十六
+             -进制的0x23或是BCD码23。
+ 123   1              //就会将十进制23转成BCD码并进行按位与操作，这样数据就失真了。
+ 124   1              DS1302_WriteByte(DS1302_YEAR,DS1302_Time[0]/10*16 + DS1302_Time[0]%10);
+ 125   1              DS1302_WriteByte(DS1302_MONTH,DS1302_Time[1]/10*16 + DS1302_Time[1]%10);
+ 126   1              DS1302_WriteByte(DS1302_DATE,DS1302_Time[2]/10*16 + DS1302_Time[2]%10);
+ 127   1              DS1302_WriteByte(DS1302_HOUR,DS1302_Time[3]/10*16 + DS1302_Time[3]%10);
+ 128   1              DS1302_WriteByte(DS1302_MINUTE,DS1302_Time[4]/10*16 + DS1302_Time[4]%10);
+ 129   1              DS1302_WriteByte(DS1302_SECOND,DS1302_Time[5]/10*16 + DS1302_Time[5]%10);
+ 130   1              DS1302_WriteByte(DS1302_DAY,DS1302_Time[6]/10*16 + DS1302_Time[6]%10);
+ 131   1              //DS1302_WriteByte(DS1302_WP,0x80);     //打开写保护
+ 132   1      }
+ 133          
+ 134          /**
+ 135            * @brief      //从DS1302获取全部的时间信息，包括年月日时分秒周几。
+ 136            * @param      //无
+ 137            * @retval     //无返回值，获取到的时间信息直接赋给全局类型数组元素。
+ 138            */
+ 139          void DS1302_GetTime(){
+ 140   1              unsigned char tempClockMsg;
+ 141   1              tempClockMsg = DS1302_ReadByte(DS1302_YEAR);
+ 142   1              DS1302_Time[0] = tempClockMsg/16*10 + tempClockMsg%16;
+ 143   1              tempClockMsg = DS1302_ReadByte(DS1302_MONTH);
+ 144   1              DS1302_Time[1] = tempClockMsg/16*10 + tempClockMsg%16;
+ 145   1              tempClockMsg = DS1302_ReadByte(DS1302_DATE);
+ 146   1              DS1302_Time[2] = tempClockMsg/16*10 + tempClockMsg%16;
+ 147   1              tempClockMsg = DS1302_ReadByte(DS1302_HOUR);
+ 148   1              DS1302_Time[3] = tempClockMsg/16*10 + tempClockMsg%16;
+ 149   1              tempClockMsg = DS1302_ReadByte(DS1302_MINUTE);
+ 150   1              DS1302_Time[4] = tempClockMsg/16*10 + tempClockMsg%16;
+ 151   1              tempClockMsg = DS1302_ReadByte(DS1302_SECOND);
+ 152   1              DS1302_Time[5] = tempClockMsg/16*10 + tempClockMsg%16;
+ 153   1              tempClockMsg = DS1302_ReadByte(DS1302_DAY);
+ 154   1              DS1302_Time[6] = tempClockMsg/16*10 + tempClockMsg%16;
+ 155   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    543    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      7       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

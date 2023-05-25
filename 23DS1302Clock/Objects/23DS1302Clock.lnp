@@ -1,0 +1,6 @@
+".\Objects\main.obj",
+".\Objects\LCD1602.obj",
+".\Objects\DS1302.obj",
+".\Objects\Delay.obj" 
+TO ".\Objects\23DS1302Clock" 
+PRINT(".\Listings\23DS1302Clock.m51") RAMSIZE(256) 

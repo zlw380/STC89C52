@@ -1,0 +1,7 @@
+".\Objects\main.obj",
+".\Objects\Delay.obj",
+".\Objects\UART.obj",
+".\Objects\LCD1602.obj",
+".\Objects\matrixKey.obj" 
+TO ".\Objects\20UARTLEDDisplay" 
+PRINT(".\Listings\20UARTLEDDisplay.m51") RAMSIZE(256) 
